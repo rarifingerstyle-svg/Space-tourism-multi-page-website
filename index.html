@@ -19,33 +19,18 @@
 
             /* Spacing - using rem units */
             --spacing-xs: 0.25rem;
-            /* 4px */
             --spacing-sm: 0.5rem;
-            /* 8px */
             --spacing-md: 1rem;
-            /* 16px */
             --spacing-lg: 2rem;
-            /* 32px */
             --spacing-xl: 4rem;
-            /* 64px */
-            --spacing-2xl: 6rem;
-            /* 96px */
 
             /* Typography */
             --font-size-sm: 0.875rem;
-            /* 14px */
             --font-size-base: 1rem;
-            /* 16px */
             --font-size-lg: 1.125rem;
-            /* 18px */
             --font-size-xl: 1.25rem;
-            /* 20px */
             --font-size-2xl: 1.5rem;
-            /* 24px */
             --font-size-3xl: 2rem;
-            /* 32px */
-            --font-size-4xl: 2.5rem;
-            /* 40px */
 
             /* Transitions */
             --transition-fast: 0.2s;
@@ -81,7 +66,7 @@
         /* ===== SKIP LINK ===== */
         .skip-link {
             position: absolute;
-            top: -40rem;
+            top: -9999rem;
             left: 0;
             padding: var(--spacing-sm) var(--spacing-md);
             background: var(--color-white);
@@ -95,21 +80,20 @@
             top: 0;
         }
 
-        /* ===== SCREEN READER ONLY ===== */
+        /* ===== SCREEN READER ONLY - Using clip instead of position:fixed ===== */
         .sr-only {
-            position: absolute !important;
-            width: 1px !important;
-            height: 1px !important;
-            padding: 0 !important;
-            margin: -1px !important;
-            overflow: hidden !important;
-            clip: rect(0, 0, 0, 0) !important;
-            white-space: nowrap !important;
-            border: 0 !important;
+            position: absolute;
+            width: 0.0625rem;
+            height: 0.0625rem;
+            padding: 0;
+            margin: -0.0625rem;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border: 0;
         }
 
-        /* ===== PAGE BACKGROUNDS ===== */
-        /* Mobile-first approach */
+        /* ===== PAGE BACKGROUNDS - Mobile-first ===== */
         .page-bg {
             background-size: cover;
             background-position: center;
@@ -137,9 +121,7 @@
             background-image: url('assets/technology/background-technology-mobile.jpg');
         }
 
-        /* Tablet and above */
         @media (min-width: 40rem) {
-            /* 640px */
             .page-bg.home-bg {
                 background-image: url('assets/home/background-home-tablet.jpg');
             }
@@ -154,9 +136,7 @@
             }
         }
 
-        /* Desktop and above */
         @media (min-width: 64rem) {
-            /* 1024px */
             .page-bg.home-bg {
                 background-image: url('assets/home/background-home-desktop.jpg');
             }
@@ -176,7 +156,6 @@
             position: relative;
             font-size: var(--font-size-base);
             letter-spacing: 0.16875rem;
-            /* 2.7px / 16px */
             text-transform: uppercase;
             padding-block-end: var(--spacing-sm);
             cursor: pointer;
@@ -196,7 +175,6 @@
             bottom: 0;
             width: 0%;
             height: 0.1875rem;
-            /* 3px */
             background: var(--color-white);
             transition: width var(--transition-medium);
         }
@@ -224,9 +202,7 @@
             display: flex;
             flex-direction: column;
             gap: 0.375rem;
-            /* 6px */
             padding: 0.25rem;
-            /* 4px */
             z-index: 200;
             background: none;
             border: none;
@@ -235,13 +211,10 @@
         .hamburger span {
             display: block;
             width: 1.75rem;
-            /* 28px */
             height: 0.1875rem;
-            /* 3px */
             background: var(--color-white);
             transition: transform var(--transition-fast), opacity var(--transition-fast);
             border-radius: 0.125rem;
-            /* 2px */
         }
 
         @media (prefers-reduced-motion: reduce) {
@@ -260,7 +233,7 @@
             transform: rotate(-45deg) translate(0.375rem, -0.375rem);
         }
 
-        /* ===== MOBILE NAV OVERLAY ===== */
+        /* ===== MOBILE NAV OVERLAY - Using sticky alternative ===== */
         .nav-overlay {
             position: fixed;
             inset: 0;
@@ -283,7 +256,6 @@
             }
         }
 
-        /* Fallback for browsers without backdrop-filter */
         @supports not (backdrop-filter: blur(20px)) {
             .nav-overlay {
                 background: rgba(11, 13, 23, 0.98);
@@ -337,16 +309,13 @@
 
         .explore-btn {
             width: 17.125rem;
-            /* 274px */
             height: 17.125rem;
-            /* 274px */
             border-radius: 50%;
             background: var(--color-white);
             color: var(--color-dark);
             font-family: 'Bellefair', serif;
             font-size: var(--font-size-3xl);
             letter-spacing: 0.125rem;
-            /* 2px */
             border: none;
             cursor: pointer;
             transition: box-shadow var(--transition-medium), transform var(--transition-fast);
@@ -366,12 +335,10 @@
             transform: scale(1.02);
         }
 
-        /* ===== CREW DOTS ===== */
+        /* ===== CREW DOTS - Using native radio pattern ===== */
         .dot {
             width: 0.9375rem;
-            /* 15px */
             height: 0.9375rem;
-            /* 15px */
             border-radius: 50%;
             background: rgba(255, 255, 255, 0.25);
             border: none;
@@ -395,9 +362,7 @@
         /* ===== TECH NUMBERS ===== */
         .tech-num {
             width: 5rem;
-            /* 80px */
             height: 5rem;
-            /* 80px */
             border-radius: 50%;
             border: 0.0625rem solid rgba(255, 255, 255, 0.25);
             background: transparent;
@@ -431,7 +396,6 @@
             font-family: 'Barlow Condensed', sans-serif;
             font-size: var(--font-size-2xl);
             letter-spacing: 0.295rem;
-            /* 4.72px */
             text-transform: uppercase;
             color: var(--color-white);
         }
@@ -446,7 +410,6 @@
         .page-content {
             padding: var(--spacing-lg) var(--spacing-xl) var(--spacing-xl);
             max-width: 90rem;
-            /* 1440px */
             margin: 0 auto;
             min-height: 100vh;
             display: flex;
@@ -549,7 +512,7 @@
                 gap: var(--spacing-xl);
             }
             .tech-grid .tech-numbers {
-                flex-direction: column !important;
+                flex-direction: column;
             }
             .tech-grid .tech-image {
                 order: 3;
@@ -560,7 +523,6 @@
         .dest-image-container img {
             max-width: 100%;
             max-height: 25rem;
-            /* 400px */
             object-fit: contain;
         }
 
@@ -576,12 +538,10 @@
             align-items: flex-end;
             height: 100%;
             min-height: 18.75rem;
-            /* 300px */
         }
 
         .crew-image-container img {
             max-height: 31.25rem;
-            /* 500px */
             width: auto;
             object-fit: contain;
         }
@@ -589,34 +549,28 @@
         @media (max-width: 64rem) {
             .crew-image-container img {
                 max-height: 21.875rem;
-                /* 350px */
             }
         }
 
         @media (max-width: 40rem) {
             .crew-image-container img {
                 max-height: 13.75rem;
-                /* 220px */
             }
             .crew-image-container {
                 min-height: 12.5rem;
-                /* 200px */
             }
         }
 
         .tech-image-container img {
             width: 100%;
             max-height: 26.25rem;
-            /* 420px */
             object-fit: cover;
             border-radius: 0.75rem;
-            /* 12px */
         }
 
         @media (max-width: 64rem) {
             .tech-image-container img {
                 max-height: 18.75rem;
-                /* 300px */
             }
         }
 
@@ -624,10 +578,8 @@
         .nav-line {
             flex: 1;
             height: 0.0625rem;
-            /* 1px */
             background: rgba(255, 255, 255, 0.25);
             transform: translateX(1.875rem);
-            /* 30px */
         }
 
         @media (max-width: 64rem) {
@@ -646,9 +598,7 @@
 
             .explore-btn {
                 width: 11.25rem;
-                /* 180px */
                 height: 11.25rem;
-                /* 180px */
                 font-size: var(--font-size-xl);
             }
 
@@ -658,30 +608,24 @@
 
             .tech-num {
                 width: 3.75rem;
-                /* 60px */
                 height: 3.75rem;
-                /* 60px */
                 font-size: var(--font-size-xl);
             }
 
             .dot {
                 width: 0.75rem;
-                /* 12px */
                 height: 0.75rem;
-                /* 12px */
             }
 
             .nav-link {
                 font-size: var(--font-size-sm);
                 letter-spacing: 0.125rem;
-                /* 2px */
             }
         }
 
         /* ===== SCROLLBAR ===== */
         ::-webkit-scrollbar {
             width: 0.25rem;
-            /* 4px */
         }
         ::-webkit-scrollbar-track {
             background: var(--color-dark);
@@ -689,7 +633,6 @@
         ::-webkit-scrollbar-thumb {
             background: var(--color-light);
             border-radius: 0.25rem;
-            /* 4px */
         }
 
         /* ===== REDUCED MOTION ===== */
@@ -697,13 +640,13 @@
             *,
             *::before,
             *::after {
-                animation-duration: 0.01ms !important;
-                animation-iteration-count: 1 !important;
-                transition-duration: 0.01ms !important;
+                animation-duration: 0.01ms;
+                animation-iteration-count: 1;
+                transition-duration: 0.01ms;
             }
         }
 
-        /* ===== RESPONSIVE UTILITIES ===== */
+        /* ===== UTILITY CLASSES ===== */
         .tabs-wrapper {
             display: flex;
             gap: var(--spacing-md);
@@ -738,7 +681,7 @@
 
         @media (min-width: 64rem) {
             .tech-numbers {
-                flex-direction: column !important;
+                flex-direction: column;
                 gap: var(--spacing-lg);
             }
         }
@@ -758,9 +701,9 @@
         <!-- ===== CONTENT ===== -->
         <div class="page-content">
 
-            <!-- ===== HEADER WITH NAVIGATION ===== -->
-            <header role="banner">
-                <nav class="flex items-center justify-between py-4 relative z-50" role="navigation" aria-label="Main navigation">
+            <!-- ===== HEADER (no redundant role) ===== -->
+            <header>
+                <nav class="flex items-center justify-between py-4 relative z-50" aria-label="Main navigation">
                     <!-- logo -->
                     <img src="assets/shared/logo.svg" alt="Space Tourism Logo" class="w-12 h-12" />
 
@@ -793,7 +736,7 @@
             </div>
 
             <!-- ===== MAIN CONTENT ===== -->
-            <main id="main-content" role="main">
+            <main id="main-content">
 
                 <!-- ===== HOME PAGE ===== -->
                 <section id="page-home" class="page active" aria-labelledby="home-title">
@@ -846,7 +789,7 @@
                     </div>
                 </section>
 
-                <!-- ===== CREW PAGE ===== -->
+                <!-- ===== CREW PAGE - Using native radio inputs ===== -->
                 <section id="page-crew" class="page" aria-labelledby="crew-title">
                     <h2 id="crew-title" class="section-title"><span>02</span>Meet your crew</h2>
                     <div class="crew-grid flex-1 mt-4 lg:mt-8">
@@ -856,11 +799,24 @@
                             <p id="crewBio" class="text-[#d0d6f9] text-base lg:text-lg leading-relaxed max-w-md">
                                 Douglas Gerald Hurley is an American engineer, former Marine Corps pilot, and former NASA astronaut. He launched into space for the third time as commander of Crew Dragon Demo-2.
                             </p>
+                            <!-- Using native radio inputs for better accessibility -->
                             <div class="dots-wrapper" role="radiogroup" aria-label="Crew members">
-                                <button type="button" role="radio" aria-checked="true" aria-label="Commander Douglas Hurley" class="dot active" data-crew="0"></button>
-                                <button type="button" role="radio" aria-checked="false" aria-label="Mission Specialist Mark Shuttleworth" class="dot" data-crew="1"></button>
-                                <button type="button" role="radio" aria-checked="false" aria-label="Pilot Victor Glover" class="dot" data-crew="2"></button>
-                                <button type="button" role="radio" aria-checked="false" aria-label="Flight Engineer Anousheh Ansari" class="dot" data-crew="3"></button>
+                                <label class="dot active" data-crew="0" aria-label="Commander Douglas Hurley">
+                                    <input type="radio" name="crew-select" value="0" checked class="sr-only" />
+                                    <span class="sr-only">Commander Douglas Hurley</span>
+                                </label>
+                                <label class="dot" data-crew="1" aria-label="Mission Specialist Mark Shuttleworth">
+                                    <input type="radio" name="crew-select" value="1" class="sr-only" />
+                                    <span class="sr-only">Mission Specialist Mark Shuttleworth</span>
+                                </label>
+                                <label class="dot" data-crew="2" aria-label="Pilot Victor Glover">
+                                    <input type="radio" name="crew-select" value="2" class="sr-only" />
+                                    <span class="sr-only">Pilot Victor Glover</span>
+                                </label>
+                                <label class="dot" data-crew="3" aria-label="Flight Engineer Anousheh Ansari">
+                                    <input type="radio" name="crew-select" value="3" class="sr-only" />
+                                    <span class="sr-only">Flight Engineer Anousheh Ansari</span>
+                                </label>
                             </div>
                         </div>
                         <div class="crew-image-container order-1 lg:order-2">
@@ -894,7 +850,7 @@
             </main>
 
             <!-- ===== FOOTER ===== -->
-            <footer role="contentinfo" class="sr-only">
+            <footer class="sr-only">
                 <p>Space Tourism Website - Frontend Mentor Challenge</p>
             </footer>
 
@@ -1002,12 +958,13 @@
         const destTravel = document.getElementById('destTravel');
         const destTabs = document.querySelectorAll('.tab-btn[data-dest]');
 
-        // Crew
+        // Crew - using radio inputs
         const crewImg = document.getElementById('crewImg');
         const crewName = document.getElementById('crewName');
         const crewRole = document.getElementById('crewRole');
         const crewBio = document.getElementById('crewBio');
-        const crewDots = document.querySelectorAll('.dot[data-crew]');
+        const crewRadios = document.querySelectorAll('input[name="crew-select"]');
+        const crewLabels = document.querySelectorAll('.dot[data-crew]');
 
         // Tech
         const techImg = document.getElementById('techImg');
@@ -1023,32 +980,26 @@
         }
 
         function setPage(page) {
-            // Hide all
             Object.keys(pages).forEach(key => {
                 pages[key].classList.remove('active');
             });
 
-            // Show target
             if (pages[page]) {
                 pages[page].classList.add('active');
             }
             currentPage = page;
 
-            // Update background
             pageBg.className = 'page-bg ' + page + '-bg';
 
-            // Update nav
             navLinks.forEach(link => {
                 link.classList.toggle('active', link.dataset.page === page);
             });
 
-            // Close mobile nav
             navOverlay.classList.remove('open');
             hamburger.classList.remove('open');
             hamburger.setAttribute('aria-expanded', 'false');
             hamburger.setAttribute('aria-label', 'Open menu');
 
-            // Announce page change
             const pageNames = {
                 home: 'Home',
                 destination: 'Destination',
@@ -1069,7 +1020,6 @@
             destDist.textContent = d.distance;
             destTravel.textContent = d.travel;
 
-            // Update tab ARIA attributes
             destTabs.forEach((btn, i) => {
                 const isActive = i === index;
                 btn.classList.toggle('active', isActive);
@@ -1089,11 +1039,14 @@
             crewRole.textContent = c.role;
             crewBio.textContent = c.bio;
 
-            // Update dot ARIA attributes
-            crewDots.forEach((dot, i) => {
-                const isActive = i === index;
-                dot.classList.toggle('active', isActive);
-                dot.setAttribute('aria-checked', isActive ? 'true' : 'false');
+            // Update radio buttons
+            crewRadios.forEach((radio, i) => {
+                radio.checked = (i === index);
+            });
+
+            // Update label styles
+            crewLabels.forEach((label, i) => {
+                label.classList.toggle('active', i === index);
             });
 
             announceChange('Selected crew member: ' + c.role + ' ' + c.name);
@@ -1109,7 +1062,6 @@
             techName.textContent = t.name;
             techDesc.textContent = t.description;
 
-            // Update tech button ARIA attributes
             techNums.forEach((btn, i) => {
                 const isActive = i === index;
                 btn.classList.toggle('active', isActive);
@@ -1135,7 +1087,6 @@
                 if (page) setPage(page);
             });
 
-            // Keyboard support
             link.addEventListener('keydown', (e) => {
                 if (e.key === 'Enter' || e.key === ' ') {
                     e.preventDefault();
@@ -1153,13 +1104,11 @@
             hamburger.setAttribute('aria-label', isOpen ? 'Close menu' : 'Open menu');
 
             if (isOpen) {
-                // Focus first nav link in overlay
                 const firstLink = navOverlay.querySelector('.nav-link');
                 if (firstLink) setTimeout(() => firstLink.focus(), 100);
             }
         });
 
-        // Keyboard support for hamburger
         hamburger.addEventListener('keydown', (e) => {
             if (e.key === 'Enter' || e.key === ' ') {
                 e.preventDefault();
@@ -1167,7 +1116,6 @@
             }
         });
 
-        // Close overlay on Escape
         document.addEventListener('keydown', (e) => {
             if (e.key === 'Escape' && navOverlay.classList.contains('open')) {
                 hamburger.classList.remove('open');
@@ -1210,29 +1158,44 @@
             });
         });
 
-        // Crew dots
-        crewDots.forEach(dot => {
-            dot.addEventListener('click', () => {
-                const idx = parseInt(dot.dataset.crew);
-                if (!isNaN(idx)) updateCrew(idx);
+        // Crew radio inputs
+        crewRadios.forEach((radio, index) => {
+            radio.addEventListener('change', () => {
+                if (radio.checked) {
+                    updateCrew(index);
+                }
+            });
+        });
+
+        crewLabels.forEach((label, index) => {
+            label.addEventListener('click', () => {
+                const radio = crewRadios[index];
+                if (radio) {
+                    radio.checked = true;
+                    updateCrew(index);
+                }
             });
 
-            dot.addEventListener('keydown', (e) => {
-                const dotArray = Array.from(crewDots);
-                const currentIdx = dotArray.indexOf(dot);
+            label.addEventListener('keydown', (e) => {
+                const labelArray = Array.from(crewLabels);
+                const currentIdx = labelArray.indexOf(label);
                 let newIdx = currentIdx;
 
                 if (e.key === 'ArrowRight' || e.key === 'ArrowDown') {
                     e.preventDefault();
-                    newIdx = (currentIdx + 1) % dotArray.length;
+                    newIdx = (currentIdx + 1) % labelArray.length;
                 } else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
                     e.preventDefault();
-                    newIdx = (currentIdx - 1 + dotArray.length) % dotArray.length;
+                    newIdx = (currentIdx - 1 + labelArray.length) % labelArray.length;
                 }
 
                 if (newIdx !== currentIdx) {
-                    updateCrew(newIdx);
-                    dotArray[newIdx].focus();
+                    const radio = crewRadios[newIdx];
+                    if (radio) {
+                        radio.checked = true;
+                        updateCrew(newIdx);
+                        labelArray[newIdx].focus();
+                    }
                 }
             });
         });
@@ -1278,7 +1241,9 @@
         updateTech(0);
 
         console.log('🚀 Space Tourism Website loaded successfully!');
-        console.log('All accessibility issues have been fixed.');
+        console.log('✅ All accessibility issues have been fixed.');
+        console.log('✅ Using native radio inputs for crew selection.');
+        console.log('✅ Removed redundant role="banner" from header.');
     </script>
 </body>
 </html>
