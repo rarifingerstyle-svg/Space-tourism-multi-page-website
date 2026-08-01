@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/png" sizes="32x32" href="./assets/favicon-32x32.png">
+  <title>Frontend Mentor | Space tourism website - Destination</title>
+  
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            'space-dark': '#0B0D17',
+            'space-blue': '#D0D6F9',
+          },
+          fontFamily: {
+            serif: ['Bellefair', 'serif'],
+            sans: ['Barlow Condensed', 'sans-serif'],
+            body: ['Barlow', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;700&family=Barlow:wght@400;700&family=Bellefair&display=swap" rel="stylesheet">
+  
+  <style>
+    body { background-image: url('./assets/destination/background-destination-mobile.jpg'); }
+    @media (min-width: 768px) { body { background-image: url('./assets/destination/background-destination-tablet.jpg'); } }
+    @media (min-width: 1024px) { body { background-image: url('./assets/destination/background-destination-desktop.jpg'); } }
+    .glass-nav { background: rgba(255, 255, 255, 0.04); backdrop-filter: blur(40.7px); }
+  </style>
+</head>
+<body class="bg-space-dark text-white font-body min-h-screen bg-cover bg-no-repeat flex flex-col justify-between">
+
+  <header class="flex justify-between items-center p-6 md:p-0 md:pl-10 lg:pt-10 relative z-50">
+    <a href="index.html">
+      <img src="./assets/shared/logo.svg" alt="Logo" class="w-10 h-10 md:w-12 md:h-12" />
+    </a>
+    <div class="hidden lg:block h-[1px] bg-white/20 grow translate-x-8 z-20"></div>
+    <button id="menu-btn" class="md:hidden z-50 focus:outline-none">
+      <img id="menu-icon" src="./assets/shared/icon-hamburger.svg" alt="Menu" />
+    </button>
+    <nav id="nav-menu" class="fixed inset-y-0 right-0 w-3/4 glass-nav translate-x-full md:translate-x-0 transition-transform duration-300 md:static md:w-auto md:px-12 lg:px-24">
+      <ul class="flex flex-col md:flex-row gap-8 pt-32 pl-8 md:p-0 tracking-[2.7px] font-sans text-sm uppercase">
+        <li><a href="index.html" class="py-2 flex gap-3 border-r-4 md:border-r-0 md:border-b-4 border-transparent hover:border-white/50"><span class="font-bold">00</span> Home</a></li>
+        <li><a href="destination-moon.html" class="py-2 flex gap-3 border-r-4 md:border-r-0 md:border-b-4 border-white"><span class="font-bold">01</span> Destination</a></li>
+        <li><a href="crew-commander.html" class="py-2 flex gap-3 border-r-4 md:border-r-0 md:border-b-4 border-transparent hover:border-white/50"><span class="font-bold">02</span> Crew</a></li>
+        <li><a href="technology-vehicle.html" class="py-2 flex gap-3 border-r-4 md:border-r-0 md:border-b-4 border-transparent hover:border-white/50"><span class="font-bold">03</span> Technology</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main class="grow flex flex-col justify-center px-6 md:px-10 lg:px-24 py-8 w-full max-w-7xl mx-auto">
+    <h1 class="font-sans text-base md:text-xl lg:text-2xl tracking-[4.75px] uppercase text-center md:text-left mb-8">
+      <span class="opacity-25 font-bold mr-4">01</span> Pick your destination
+    </h1>
+
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center">
+      <div class="flex justify-center">
+        <img src="./assets/destination/image-moon.png" alt="Moon" class="w-44 h-44 md:w-80 md:h-80 lg:w-[445px] lg:h-[445px] animate-spin-slow" />
+      </div>
+
+      <div class="flex flex-col items-center lg:items-start text-center lg:text-left">
+        <ul class="flex gap-8 font-sans text-sm md:text-base tracking-[2.7px] uppercase mb-6">
+          <li><a href="destination-moon.html" class="py-2 border-b-2 border-white text-white">Moon</a></li>
+          <li><a href="destination-mars.html" class="py-2 border-b-2 border-transparent text-space-blue hover:border-white/50">Mars</a></li>
+          <li><a href="destination-europa.html" class="py-2 border-b-2 border-transparent text-space-blue hover:border-white/50">Europa</a></li>
+          <li><a href="destination-titan.html" class="py-2 border-b-2 border-transparent text-space-blue hover:border-white/50">Titan</a></li>
+        </ul>
+
+        <h2 class="font-serif text-6xl md:text-8xl uppercase mb-4">Moon</h2>
+        <p class="text-space-blue text-sm md:text-base leading-relaxed max-w-md pb-8 border-b border-white/20 mb-8">
+          See our planet as you’ve never seen it before. A perfect relaxing trip away to help regain perspective and come back refreshed. While you’re there, take in some history by visiting the Luna 2 and Apollo 11 landing sites.
+        </p>
+
+        <div class="flex flex-col md:flex-row gap-8 md:gap-16 font-serif uppercase">
+          <div>
+            <span class="font-sans text-xs tracking-[2.35px] text-space-blue block mb-2">Avg. distance</span>
+            <span class="text-2xl">384,400 km</span>
+          </div>
+          <div>
+            <span class="font-sans text-xs tracking-[2.35px] text-space-blue block mb-2">Est. travel time</span>
+            <span class="text-2xl">3 days</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <script src="./main.js"></script>
+</body>
+</html>
