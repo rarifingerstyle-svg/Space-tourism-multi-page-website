@@ -5,8 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Space Tourism</title>
     <link rel="icon" type="image/png" href="assets/favicon-32x32.png" />
-    <script src="https://cdn.tailwindcss.com">
-    </script>
+    <script src="https://cdn.tailwindcss.com"></script>
     <style>
         /* ===== CUSTOM PROPERTIES ===== */
         :root {
@@ -15,7 +14,9 @@
             --color-light: #d0d6f9;
             --color-white: #ffffff;
             --color-hover: #979797;
-            --color-overlay: rgba(11, 13, 23, 0.9);
+            --color-overlay: rgba(11, 13, 23, 0.98);
+            --color-border-light: rgba(255, 255, 255, 0.25);
+            --color-border-hover: rgba(255, 255, 255, 0.5);
 
             /* Spacing - using rem units */
             --spacing-xs: 0.25rem;
@@ -80,17 +81,63 @@
             top: 0;
         }
 
-        /* ===== SCREEN READER ONLY - Using clip instead of position:fixed ===== */
+        /* ===== SCREEN READER ONLY ===== */
         .sr-only {
             position: absolute;
-            width: 0.0625rem;
-            height: 0.0625rem;
+            width: 1px;
+            height: 1px;
             padding: 0;
-            margin: -0.0625rem;
+            margin: -1px;
             overflow: hidden;
             clip: rect(0, 0, 0, 0);
             white-space: nowrap;
             border: 0;
+        }
+
+        /* ===== SECTION TITLE (Base Selectors) ===== */
+        .section-title {
+            font-family: 'Barlow Condensed', sans-serif;
+            font-size: var(--font-size-2xl);
+            letter-spacing: 0.295rem;
+            text-transform: uppercase;
+            color: var(--color-white);
+        }
+
+        .section-title span {
+            color: var(--color-border-light);
+            font-weight: 700;
+            margin-inline-end: var(--spacing-md);
+        }
+
+        /* ===== HAMBURGER BUTTON ===== */
+        .hamburger {
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            gap: 0.375rem;
+            padding: 0.25rem;
+            z-index: 200;
+            background: none;
+            border: none;
+        }
+
+        .hamburger span {
+            display: block;
+            width: 1.75rem;
+            height: 0.1875rem;
+            background: var(--color-white);
+            transition: transform var(--transition-fast), opacity var(--transition-fast);
+            border-radius: 0.125rem;
+        }
+
+        .hamburger.open span:nth-child(1) {
+            transform: rotate(45deg) translate(0.375rem, 0.375rem);
+        }
+        .hamburger.open span:nth-child(2) {
+            opacity: 0;
+        }
+        .hamburger.open span:nth-child(3) {
+            transform: rotate(-45deg) translate(-0.375rem, -0.375rem);
         }
 
         /* ===== PAGE BACKGROUNDS - Mobile-first ===== */
@@ -100,12 +147,6 @@
             background-repeat: no-repeat;
             min-height: 100vh;
             transition: background-image var(--transition-slow) ease;
-        }
-
-        @media (prefers-reduced-motion: reduce) {
-            .page-bg {
-                transition: none;
-            }
         }
 
         .page-bg.home-bg {
@@ -121,7 +162,8 @@
             background-image: url('assets/technology/background-technology-mobile.jpg');
         }
 
-        @media (min-width: 40rem) {
+        /* Using em units in media queries for accessibility */
+        @media (min-width: 40em) {
             .page-bg.home-bg {
                 background-image: url('assets/home/background-home-tablet.jpg');
             }
@@ -136,7 +178,7 @@
             }
         }
 
-        @media (min-width: 64rem) {
+        @media (min-width: 64em) {
             .page-bg.home-bg {
                 background-image: url('assets/home/background-home-desktop.jpg');
             }
@@ -179,12 +221,6 @@
             transition: width var(--transition-medium);
         }
 
-        @media (prefers-reduced-motion: reduce) {
-            .nav-link::after {
-                transition: none;
-            }
-        }
-
         .nav-link:hover::after,
         .nav-link.active::after {
             width: 100%;
@@ -196,46 +232,9 @@
             color: var(--color-white);
         }
 
-        /* ===== HAMBURGER BUTTON ===== */
-        .hamburger {
-            cursor: pointer;
-            display: flex;
-            flex-direction: column;
-            gap: 0.375rem;
-            padding: 0.25rem;
-            z-index: 200;
-            background: none;
-            border: none;
-        }
-
-        .hamburger span {
-            display: block;
-            width: 1.75rem;
-            height: 0.1875rem;
-            background: var(--color-white);
-            transition: transform var(--transition-fast), opacity var(--transition-fast);
-            border-radius: 0.125rem;
-        }
-
-        @media (prefers-reduced-motion: reduce) {
-            .hamburger span {
-                transition: none;
-            }
-        }
-
-        .hamburger.open span:nth-child(1) {
-            transform: rotate(45deg) translate(0.375rem, 0.375rem);
-        }
-        .hamburger.open span:nth-child(2) {
-            opacity: 0;
-        }
-        .hamburger.open span:nth-child(3) {
-            transform: rotate(-45deg) translate(0.375rem, -0.375rem);
-        }
-
-        /* ===== MOBILE NAV OVERLAY - Using sticky alternative ===== */
+        /* ===== MOBILE NAV OVERLAY - Replaced fixed positioning for zoom accessibility ===== */
         .nav-overlay {
-            position: fixed;
+            position: absolute;
             inset: 0;
             background: var(--color-overlay);
             backdrop-filter: blur(20px);
@@ -247,19 +246,7 @@
             align-items: center;
             justify-content: center;
             overflow-y: auto;
-            max-height: 100vh;
-        }
-
-        @media (prefers-reduced-motion: reduce) {
-            .nav-overlay {
-                transition: none;
-            }
-        }
-
-        @supports not (backdrop-filter: blur(20px)) {
-            .nav-overlay {
-                background: rgba(11, 13, 23, 0.98);
-            }
+            min-height: 100vh;
         }
 
         .nav-overlay.open {
@@ -293,14 +280,8 @@
             transition: border-color var(--transition-fast);
         }
 
-        @media (prefers-reduced-motion: reduce) {
-            .tab-btn {
-                transition: none;
-            }
-        }
-
         .tab-btn:hover {
-            border-bottom-color: rgba(255, 255, 255, 0.5);
+            border-bottom-color: var(--color-border-hover);
         }
         .tab-btn.active {
             color: var(--color-white);
@@ -308,8 +289,8 @@
         }
 
         .explore-btn {
-            width: 17.125rem;
-            height: 17.125rem;
+            width: clamp(11.25rem, 20vw, 17.125rem);
+            height: clamp(11.25rem, 20vw, 17.125rem);
             border-radius: 50%;
             background: var(--color-white);
             color: var(--color-dark);
@@ -324,39 +305,27 @@
             justify-content: center;
         }
 
-        @media (prefers-reduced-motion: reduce) {
-            .explore-btn {
-                transition: none;
-            }
-        }
-
         .explore-btn:hover {
             box-shadow: 0 0 0 5.5rem rgba(255, 255, 255, 0.1);
             transform: scale(1.02);
         }
 
-        /* ===== CREW DOTS - Using native radio pattern ===== */
+        /* ===== CREW DOTS ===== */
         .dot {
             width: 0.9375rem;
             height: 0.9375rem;
             border-radius: 50%;
-            background: rgba(255, 255, 255, 0.25);
+            background: var(--color-border-light);
             border: none;
             cursor: pointer;
             transition: background var(--transition-fast);
-        }
-
-        @media (prefers-reduced-motion: reduce) {
-            .dot {
-                transition: none;
-            }
         }
 
         .dot.active {
             background: var(--color-white);
         }
         .dot:hover:not(.active) {
-            background: rgba(255, 255, 255, 0.5);
+            background: var(--color-border-hover);
         }
 
         /* ===== TECH NUMBERS ===== */
@@ -364,7 +333,7 @@
             width: 5rem;
             height: 5rem;
             border-radius: 50%;
-            border: 0.0625rem solid rgba(255, 255, 255, 0.25);
+            border: 0.0625rem solid var(--color-border-light);
             background: transparent;
             color: var(--color-white);
             font-family: 'Bellefair', serif;
@@ -376,12 +345,6 @@
             justify-content: center;
         }
 
-        @media (prefers-reduced-motion: reduce) {
-            .tech-num {
-                transition: none;
-            }
-        }
-
         .tech-num:hover {
             border-color: var(--color-white);
         }
@@ -389,21 +352,6 @@
             background: var(--color-white);
             color: var(--color-dark);
             border-color: var(--color-white);
-        }
-
-        /* ===== SECTION TITLE ===== */
-        .section-title {
-            font-family: 'Barlow Condensed', sans-serif;
-            font-size: var(--font-size-2xl);
-            letter-spacing: 0.295rem;
-            text-transform: uppercase;
-            color: var(--color-white);
-        }
-
-        .section-title span {
-            color: rgba(255, 255, 255, 0.25);
-            font-weight: 700;
-            margin-inline-end: var(--spacing-md);
         }
 
         /* ===== PAGE CONTENT ===== */
@@ -416,7 +364,7 @@
             flex-direction: column;
         }
 
-        @media (max-width: 40rem) {
+        @media (max-width: 40em) {
             .page-content {
                 padding: var(--spacing-md) var(--spacing-lg) var(--spacing-xl);
             }
@@ -428,12 +376,6 @@
             animation: fadeIn var(--transition-slow) ease;
             flex: 1;
             flex-direction: column;
-        }
-
-        @media (prefers-reduced-motion: reduce) {
-            .page {
-                animation: none;
-            }
         }
 
         .page.active {
@@ -467,7 +409,7 @@
             flex: 1;
         }
 
-        @media (min-width: 64rem) {
+        @media (min-width: 64em) {
             .destination-grid {
                 grid-template-columns: 1fr 1fr;
                 gap: var(--spacing-xl);
@@ -488,7 +430,7 @@
             flex: 1;
         }
 
-        @media (min-width: 64rem) {
+        @media (min-width: 64em) {
             .crew-grid {
                 grid-template-columns: 1fr 1fr;
                 gap: var(--spacing-lg);
@@ -506,7 +448,7 @@
             flex: 1;
         }
 
-        @media (min-width: 64rem) {
+        @media (min-width: 64em) {
             .tech-grid {
                 grid-template-columns: auto 1fr 1fr;
                 gap: var(--spacing-xl);
@@ -526,12 +468,6 @@
             object-fit: contain;
         }
 
-        @media (min-width: 64rem) {
-            .dest-image-container img {
-                max-height: 25rem;
-            }
-        }
-
         .crew-image-container {
             display: flex;
             justify-content: center;
@@ -546,13 +482,13 @@
             object-fit: contain;
         }
 
-        @media (max-width: 64rem) {
+        @media (max-width: 64em) {
             .crew-image-container img {
                 max-height: 21.875rem;
             }
         }
 
-        @media (max-width: 40rem) {
+        @media (max-width: 40em) {
             .crew-image-container img {
                 max-height: 13.75rem;
             }
@@ -568,7 +504,7 @@
             border-radius: 0.75rem;
         }
 
-        @media (max-width: 64rem) {
+        @media (max-width: 64em) {
             .tech-image-container img {
                 max-height: 18.75rem;
             }
@@ -578,32 +514,22 @@
         .nav-line {
             flex: 1;
             height: 0.0625rem;
-            background: rgba(255, 255, 255, 0.25);
+            background: var(--color-border-light);
             transform: translateX(1.875rem);
         }
 
-        @media (max-width: 64rem) {
+        @media (max-width: 64em) {
             .nav-line {
                 display: none;
             }
         }
 
         /* ===== RESPONSIVE ADJUSTMENTS ===== */
-        @media (max-width: 40rem) {
+        @media (max-width: 40em) {
             .section-title {
                 font-size: var(--font-size-xl);
                 letter-spacing: 0.21125rem;
                 text-align: center;
-            }
-
-            .explore-btn {
-                width: 11.25rem;
-                height: 11.25rem;
-                font-size: var(--font-size-xl);
-            }
-
-            .explore-btn:hover {
-                box-shadow: 0 0 0 3.75rem rgba(255, 255, 255, 0.1);
             }
 
             .tech-num {
@@ -640,9 +566,9 @@
             *,
             *::before,
             *::after {
-                animation-duration: 0.01ms;
-                animation-iteration-count: 1;
-                transition-duration: 0.01ms;
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
             }
         }
 
@@ -653,7 +579,7 @@
             flex-wrap: wrap;
         }
 
-        @media (min-width: 64rem) {
+        @media (min-width: 64em) {
             .tabs-wrapper {
                 gap: var(--spacing-lg);
             }
@@ -679,7 +605,7 @@
             justify-content: center;
         }
 
-        @media (min-width: 64rem) {
+        @media (min-width: 64em) {
             .tech-numbers {
                 flex-direction: column;
                 gap: var(--spacing-lg);
@@ -701,7 +627,7 @@
         <!-- ===== CONTENT ===== -->
         <div class="page-content">
 
-            <!-- ===== HEADER (no redundant role) ===== -->
+            <!-- ===== HEADER ===== -->
             <header>
                 <nav class="flex items-center justify-between py-4 relative z-50" aria-label="Main navigation">
                     <!-- logo -->
@@ -789,7 +715,7 @@
                     </div>
                 </section>
 
-                <!-- ===== CREW PAGE - Using native radio inputs ===== -->
+                <!-- ===== CREW PAGE ===== -->
                 <section id="page-crew" class="page" aria-labelledby="crew-title">
                     <h2 id="crew-title" class="section-title"><span>02</span>Meet your crew</h2>
                     <div class="crew-grid flex-1 mt-4 lg:mt-8">
@@ -799,7 +725,6 @@
                             <p id="crewBio" class="text-[#d0d6f9] text-base lg:text-lg leading-relaxed max-w-md">
                                 Douglas Gerald Hurley is an American engineer, former Marine Corps pilot, and former NASA astronaut. He launched into space for the third time as commander of Crew Dragon Demo-2.
                             </p>
-                            <!-- Using native radio inputs for better accessibility -->
                             <div class="dots-wrapper" role="radiogroup" aria-label="Crew members">
                                 <label class="dot active" data-crew="0" aria-label="Commander Douglas Hurley">
                                     <input type="radio" name="crew-select" value="0" checked class="sr-only" />
@@ -829,11 +754,12 @@
                 <section id="page-technology" class="page" aria-labelledby="tech-title">
                     <h2 id="tech-title" class="section-title"><span>03</span>Space launch 101</h2>
                     <div class="tech-grid flex-1 mt-4 lg:mt-8">
-                        <div class="tech-numbers" role="navigation" aria-label="Technology navigation">
+                        <!-- Preferred native <nav> tag for technology navigation -->
+                        <nav class="tech-numbers" aria-label="Technology navigation">
                             <button type="button" class="tech-num active" data-tech="0" aria-current="true" aria-label="Launch vehicle">1</button>
                             <button type="button" class="tech-num" data-tech="1" aria-current="false" aria-label="Spaceport">2</button>
                             <button type="button" class="tech-num" data-tech="2" aria-current="false" aria-label="Space capsule">3</button>
-                        </div>
+                        </nav>
                         <div class="flex flex-col gap-2 order-3 lg:order-2 text-center lg:text-left">
                             <p class="text-[#d0d6f9] text-sm uppercase tracking-[0.125rem]">The terminology…</p>
                             <h3 id="techName" class="font-bellefair text-3xl lg:text-5xl uppercase">Launch vehicle</h3>
@@ -859,7 +785,6 @@
 
     <!-- ===== JAVASCRIPT ===== -->
     <script>
-        // ===== DATA =====
         const DATA = {
             destinations: [{
                 name: "Moon",
@@ -931,13 +856,11 @@
             }]
         };
 
-        // ===== STATE =====
         let currentPage = 'home';
         let currentDest = 0;
         let currentCrew = 0;
         let currentTech = 0;
 
-        // ===== DOM REFS =====
         const pageBg = document.getElementById('pageBg');
         const pages = {
             home: document.getElementById('page-home'),
@@ -950,7 +873,6 @@
         const navOverlay = document.getElementById('navOverlay');
         const srAnnounce = document.getElementById('sr-announce');
 
-        // Destination
         const destImg = document.getElementById('destImg');
         const destName = document.getElementById('destName');
         const destDesc = document.getElementById('destDesc');
@@ -958,7 +880,6 @@
         const destTravel = document.getElementById('destTravel');
         const destTabs = document.querySelectorAll('.tab-btn[data-dest]');
 
-        // Crew - using radio inputs
         const crewImg = document.getElementById('crewImg');
         const crewName = document.getElementById('crewName');
         const crewRole = document.getElementById('crewRole');
@@ -966,13 +887,11 @@
         const crewRadios = document.querySelectorAll('input[name="crew-select"]');
         const crewLabels = document.querySelectorAll('.dot[data-crew]');
 
-        // Tech
         const techImg = document.getElementById('techImg');
         const techName = document.getElementById('techName');
         const techDesc = document.getElementById('techDesc');
         const techNums = document.querySelectorAll('.tech-num[data-tech]');
 
-        // ===== HELPERS =====
         function announceChange(message) {
             if (srAnnounce) {
                 srAnnounce.textContent = message;
@@ -1039,12 +958,10 @@
             crewRole.textContent = c.role;
             crewBio.textContent = c.bio;
 
-            // Update radio buttons
             crewRadios.forEach((radio, i) => {
                 radio.checked = (i === index);
             });
 
-            // Update label styles
             crewLabels.forEach((label, i) => {
                 label.classList.toggle('active', i === index);
             });
@@ -1078,9 +995,6 @@
             techImg.src = isMobile ? t.images.landscape : t.images.portrait;
         }
 
-        // ===== EVENT LISTENERS =====
-
-        // Navigation clicks
         navLinks.forEach(link => {
             link.addEventListener('click', () => {
                 const page = link.dataset.page;
@@ -1096,7 +1010,6 @@
             });
         });
 
-        // Hamburger menu
         hamburger.addEventListener('click', () => {
             const isOpen = hamburger.classList.toggle('open');
             navOverlay.classList.toggle('open');
@@ -1126,12 +1039,10 @@
             }
         });
 
-        // Explore button
         document.getElementById('exploreBtn').addEventListener('click', () => {
             setPage('destination');
         });
 
-        // Destination tabs
         destTabs.forEach(btn => {
             btn.addEventListener('click', () => {
                 const idx = parseInt(btn.dataset.dest);
@@ -1158,7 +1069,6 @@
             });
         });
 
-        // Crew radio inputs
         crewRadios.forEach((radio, index) => {
             radio.addEventListener('change', () => {
                 if (radio.checked) {
@@ -1200,7 +1110,6 @@
             });
         });
 
-        // Tech numbers
         techNums.forEach(btn => {
             btn.addEventListener('click', () => {
                 const idx = parseInt(btn.dataset.tech);
@@ -1217,7 +1126,7 @@
                     newIdx = (currentIdx + 1) % btnArray.length;
                 } else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
                     e.preventDefault();
-                    newIdx = (currentIdx - 1 + btnArray.length) % btnArray.length;
+                    newIdx = (currentIdx - 1 + labelArray.length) % btnArray.length;
                 }
 
                 if (newIdx !== currentIdx) {
@@ -1227,23 +1136,16 @@
             });
         });
 
-        // Resize for tech images
         let resizeTimeout;
         window.addEventListener('resize', () => {
             clearTimeout(resizeTimeout);
             resizeTimeout = setTimeout(handleTechResize, 150);
         });
 
-        // ===== INIT =====
         setPage('home');
         updateDestination(0);
         updateCrew(0);
         updateTech(0);
-
-        console.log('🚀 Space Tourism Website loaded successfully!');
-        console.log('✅ All accessibility issues have been fixed.');
-        console.log('✅ Using native radio inputs for crew selection.');
-        console.log('✅ Removed redundant role="banner" from header.');
     </script>
 </body>
 </html>
