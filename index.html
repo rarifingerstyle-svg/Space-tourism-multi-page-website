@@ -18,6 +18,7 @@
             --color-border-light: rgba(255, 255, 255, 0.25);
             --color-border-hover: rgba(255, 255, 255, 0.5);
             --color-white-transparent: rgba(255, 255, 255, 0.1);
+            --color-white-subtle: rgba(255, 255, 255, 0.04);
 
             /* Spacing - using rem units */
             --spacing-xs: 0.25rem;
@@ -40,7 +41,7 @@
             --transition-slow: 0.4s;
         }
 
-        /* ===== RESET & BASE (Lowest Specificity First) ===== */
+        /* ===== RESET & BASE ===== */
         * {
             margin: 0;
             padding: 0;
@@ -90,13 +91,13 @@
             top: 0;
         }
 
-        /* Using rem units for scaling consistency and screen readers */
+        /* Responsive accessibility unit using calc() for fluid/dynamic margin */
         .sr-only {
             position: absolute;
             width: 0.0625rem;
             height: 0.0625rem;
             padding: 0;
-            margin: -0.0625rem;
+            margin: calc(-1 * 0.0625rem);
             overflow: hidden;
             clip: rect(0, 0, 0, 0);
             white-space: nowrap;
@@ -189,7 +190,6 @@
             }
         }
 
-        /* Flat selector structure for Hamburger */
         .hamburger {
             display: flex;
             flex-direction: column;
@@ -359,7 +359,7 @@
             }
         }
 
-        /* ===== BACKGROUNDS ===== */
+        /* ===== BACKGROUNDS (Using em for Accessible Media Queries) ===== */
         .page-bg {
             background-size: cover;
             background-position: center;
@@ -381,7 +381,8 @@
             background-image: url('assets/technology/background-technology-mobile.jpg');
         }
 
-        @media (min-width: 40em) {
+        /* Tablet Breakpoint: 48em (768px / 16px) */
+        @media (min-width: 48em) {
             .page-bg.home-bg {
                 background-image: url('assets/home/background-home-tablet.jpg');
             }
@@ -396,6 +397,7 @@
             }
         }
 
+        /* Desktop Breakpoint: 64em (1024px / 16px) */
         @media (min-width: 64em) {
             .page-bg.home-bg {
                 background-image: url('assets/home/background-home-desktop.jpg');
@@ -498,7 +500,7 @@
             object-fit: contain;
         }
 
-        @media (min-width: 40em) {
+        @media (min-width: 48em) {
             .crew-image-container {
                 min-height: 18.75rem;
             }
@@ -568,7 +570,7 @@
             border-radius: 0.25rem;
         }
 
-        /* ===== REDUCED MOTION (Clean Cascade, No !important) ===== */
+        /* ===== REDUCED MOTION ===== */
         @media (prefers-reduced-motion: reduce) {
             *,
             *::before,
@@ -612,7 +614,8 @@
                 <nav class="flex items-center justify-between py-4 relative z-50" aria-label="Main navigation">
                     <img src="assets/shared/logo.svg" alt="Space Tourism Logo" class="w-12 h-12" />
 
-                    <div class="hidden lg:flex items-center gap-10 bg-white/5 backdrop-blur-md px-12 py-0 rounded-r-full relative">
+                    <!-- Using CSS variable --color-white-subtle for subtle background overlay -->
+                    <div class="hidden lg:flex items-center gap-10 bg-[var(--color-white-subtle)] backdrop-blur-md px-12 py-0 rounded-r-full relative">
                         <div class="nav-line" aria-hidden="true"></div>
                         <button type="button" class="nav-link active" data-page="home"><span>00</span>Home</button>
                         <button type="button" class="nav-link" data-page="destination"><span>01</span>Destination</button>
